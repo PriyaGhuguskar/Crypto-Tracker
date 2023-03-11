@@ -1,38 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;800&family=Open+Sans:ital,wght@0,300;0,800;1,400&display=swap');
+
 .App {
-  text-align: center;
+    background-color: black;
+    color: white;
+    min-height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+    scroll-behavior: smooth;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a {
+    text-decoration: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#Nav-head {
+    color: gold;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+#navbarScrollingDropdown {
+    border: 1px solid whitesmoke;
+    width: 100px;
+    height: 40px;
+    padding: 4px;
+    text-align: center;
+    align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.banner-head {
+    background-image: url(../public/banner2.jpg);
+}
+
+.banner-cont {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 25;
+    text-align: center;
+    justify-content: space-around;
+}
+
+.banner-text {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 1.5em;
+    /* margin-bottom: 10px; */
+}
+.banner-small{
+    font-weight: 700;
+    font-size: 1.2em;
+    margin-bottom: 25px;
+    color: gray;
+}
+.crypto-slider{
+    height: 50%;
+    display: flex;
+    align-items: center;
+}
+.slider-link{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: white;
+    text-decoration: none;
+}
+.cointable-head{
+    margin: 20px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: 1.7em;
+    text-align: center;
 }
