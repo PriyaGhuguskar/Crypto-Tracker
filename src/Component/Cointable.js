@@ -3,7 +3,7 @@ import { CoinList } from '../Config/Api';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { CryptoState } from '../Context/CryptoContext';
-import { Container, Form, Table, Spinner, Pagination } from 'react-bootstrap';
+import { Container, Form, Table, Spinner} from 'react-bootstrap';
 import { numberWithCommas } from './Banner/Slider';
 // import CryptoRow from './CoinRow';
 
@@ -11,7 +11,7 @@ const Cointable = () => {
     const [coins, setCoins] = useState([]);
     const [loading, setLoading] = useState(false);
     const [search, setSearch] = useState("");
-    const [page, setPage] = useState(1)
+    // const [page, setPage] = useState(1)
     const history = useHistory()
 
     const { currency, symbol } = CryptoState()
@@ -22,9 +22,11 @@ const Cointable = () => {
         setCoins(data);
         setLoading(false)
     };
-    console.log(coins)
+    // console.log(coins)
     useEffect(() => {
+       
         fetchCoins()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currency])
 
     const handlesearch = () => {
@@ -148,6 +150,4 @@ const Cointable = () => {
 
 export default Cointable
 
-{/* //   ) : (
-    //     <Spinner animation="border" />
-    //   )} */}
+

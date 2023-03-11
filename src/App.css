@@ -170,3 +170,35 @@ a {
     padding-top: 0;
     text-align: justify;
   }
+  .coin-marketdata{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+  }
+  .coin-rank{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    /* gap: 14; */
+  }
+  .info-container{
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 20px;
+
+  }
+  .selectbutton{
+    border: 1px solid gold;
+    border-radius: 2px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+   
+
+  }

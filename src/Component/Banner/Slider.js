@@ -19,10 +19,11 @@ const Slider = () => {
         setTrending(data);
     };
 
-    console.log(trending);
+    // console.log(trending);
     useEffect(() => {
         fetchTrendingCoins();
-    }, [currency]);
+          // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, [currency]);
 
 
 
