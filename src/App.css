@@ -46,23 +46,26 @@ a {
 }
 
 .banner-text {
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     font-size: 1.5em;
     /* margin-bottom: 10px; */
 }
-.banner-small{
+
+.banner-small {
     font-weight: 700;
     font-size: 1.2em;
     margin-bottom: 25px;
     color: gray;
 }
-.crypto-slider{
+
+.crypto-slider {
     height: 50%;
     display: flex;
     align-items: center;
 }
-.slider-link{
+
+.slider-link {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -71,10 +74,99 @@ a {
     color: white;
     text-decoration: none;
 }
-.cointable-head{
+
+.cointable-head {
     margin: 20px;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     font-size: 1.7em;
     text-align: center;
 }
+
+.form-serach {
+    border: 2px solid black
+}
+
+.coin-search {
+    background: transparent;
+    /* background-color: black; */
+    color: white;
+    width: 100%;
+    height: 40px;
+    font-size: 1.1em;
+    font-weight: 700;
+    border: 2px solid black;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid seashell;
+}
+
+.Table-head-row {
+    background-color: gold;
+    border: none;
+    color: black;
+    height: 60px;
+    align-items: center;
+    /* padding: px; */
+    font-size: 1.3em;
+    text-align: center;
+}
+
+.Table-data-row {
+    /* background-color: black; */
+    /* height: 90vh; */
+
+    color: white;
+    text-align: center;
+}
+
+.table-row {
+    cursor: pointer;
+
+}
+
+.table-row:hover {
+    background-color: #131111;
+}
+
+.coin-info {
+    width: 100%;
+ /* height:90vh; */
+ display: flex;
+ /* flex-wrap: wrap; */
+}
+
+
+.coin-side {
+    display: flex;
+    width: 30%;
+    margin: 10px;
+    padding: 10px;
+    padding-right: 15px;
+    /* height: 100vh; */
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    margin-top: 25;
+    border-right: 2px solid gray;
+  
+}
+@media screen and (max-width: 729px) {
+    .coin-info {
+        
+       flex-direction: column;
+    }
+  }
+@media screen and (max-width: 730px) {
+    .coin-side {
+        width: 100%;
+        border: none;
+        border-bottom: 2px solid gray;
+    }
+  }
+  .coin-des{
+    width: 100%;
+    padding: 10px;
+    padding-top: 0;
+    text-align: justify;
+  }
