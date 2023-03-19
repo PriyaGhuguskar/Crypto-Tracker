@@ -7,11 +7,11 @@ const Banner = () => {
     <div className='banner-head'>
         <Container className='banner-cont'>
             <div className='banner-heading'>
-            <div className='banner-text display-2'>
-               CRYPTO HUNTER
-            </div>
+            <h2 className='banner-text '>
+            The Universe is a pretty big place to explore
+            </h2>
             <div className='banner-small'>
-              Get all the Info Regarding your Favourite Crypto Currency
+              Get all the Info Regarding Our Mission
             </div>
             </div>
             <Slider />

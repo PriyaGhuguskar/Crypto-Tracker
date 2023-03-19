@@ -48,7 +48,7 @@ a {
 .banner-text {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
-    font-size: 1.5em;
+    /* font-size: 1.2em; */
     /* margin-bottom: 10px; */
 }
 
@@ -105,7 +105,7 @@ a {
     background-color: gold;
     border: none;
     color: black;
-    height: 60px;
+    height: 15px;
     align-items: center;
     /* padding: px; */
     font-size: 1.3em;

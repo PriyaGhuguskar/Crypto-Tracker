@@ -1,11 +1,8 @@
-export const CoinList = (currency) =>
-  `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=1&sparkline=false`;
+export const ComingList = () =>
+  `https://api.spacexdata.com/v3/rockets`;
 
-export const SingleCoin = (id) =>
-  `https://api.coingecko.com/api/v3/coins/${id}`;
+  export const Single = (capsule_serial) =>
+  `https://api.spacexdata.com/v3/capsules/${capsule_serial}`;
 
-export const HistoricalChart = (id, days = 365, currency) =>
-  `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=${currency}&days=${days}`;
-
-export const TrendingCoins = (currency) =>
-  `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=gecko_desc&per_page=10&page=1&sparkline=false&price_change_percentage=24h`;
+  export const AllList = () =>
+  `https://api.spacexdata.com/v3/rockets`;
