@@ -1,7 +1,7 @@
 import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './Component/Header';
+import Header from './Component/NavCompo';
 // import CoinPage from './pages/CoinPage';
 import Homepage from './pages/Homepage';
 
