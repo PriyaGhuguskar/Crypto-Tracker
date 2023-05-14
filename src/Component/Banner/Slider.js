@@ -4,9 +4,9 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import AliceCarousel from 'react-alice-carousel'
 
-// export function numberWithCommas(x) {
-//   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-// }
+export function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 
 const Slider = () => {

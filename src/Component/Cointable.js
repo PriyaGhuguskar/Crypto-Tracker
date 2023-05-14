@@ -1,64 +1,62 @@
 import React, { useEffect, useState } from 'react'
-import { AllList } from '../Config/Api';
+import { CoinList } from '../Config/Api';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import { Container, Form, Card, Row, Col, Spinner } from 'react-bootstrap';
+import { CryptoState } from '../Context/CryptoContext';
+import { Container, Form, Table, Spinner} from 'react-bootstrap';
+import { numberWithCommas } from './Banner/Slider';
+// import CryptoRow from './CoinRow';
 
 const Cointable = () => {
     const [coins, setCoins] = useState([]);
     const [loading, setLoading] = useState(false);
     const [search, setSearch] = useState("");
-    const [search1, setSearch1] = useState("");
-
-
+    // const [page, setPage] = useState(1)
     const history = useHistory()
 
+    const { currency, symbol } = CryptoState()
 
     const fetchCoins = async () => {
         setLoading(true)
         const { data } = await axios.get(CoinList());
 // =======
-        const { data } = await axios.get(AllList());
+        // const { data } = await axios.get(AllList());
 //a4efbf34a28c6f08c97e8517fffaf82f92b1a772
         setCoins(data);
         setLoading(false)
     };
     // console.log(coins)
     useEffect(() => {
-
+       
         fetchCoins()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [currency])
 
     const handlesearch = () => {
-
+       
         return coins.filter(
             (coin) =>
-                // console.log('hi')
-                coin.rocket_name.includes(search)
+                coin.name.toLowerCase().includes(search) ||
+                coin.symbol.toLowerCase().includes(search)
         )
     }
 
 
 
     return (
-        
+        <>
             <Container>
                 <div className='cointable-head'>
-                    Our Projects
+                    Cryptocurrency Prices by Market Cap
                 </div>
                 <Form className='form-serach' variant="dark" bg="dark">
-
                     <input type="text"
-                        placeholder='Search from Rocket Name...'
+                        placeholder='Search for Crypto Currency...'
                         className="coin-search"
                         onChange={(e) => setSearch(e.target.value)}
                     />
 
-
-
                 </Form>
-
                 {loading ? (
                     <Spinner animation="border" />
                 ) : (
@@ -69,71 +67,90 @@ const Cointable = () => {
                                     <th key={head}
                                     >{head}</th>
                                 ))}
+
                             </tr>
                         </thead>
 
-                        <Row>
-                            {coins.length ? (
-                                handlesearch().map((row) => (
-                                    <Col md={4} className="mt-2 mb-2" key={row.id}>
-                                        <Card style={{ width: "18rem", height: "31rem", textAlign: "center" }}>
-                                            <Card.Img
-                                                variant="top"
-                                                src={row.flickr_images[0]}
-                                                style={{ height: "200px" }}
+                        <tbody className='Table-data-row'>
+                            {handlesearch().map((row) => {
+                                let profit = row.price_change_percentage_24h > 0;
+                                return (
+                                    <tr className='table-row' onClick={() => history.push(`/coins/${row.id}`)}
+                                        key={row.name}
+                                    >
+                                        <td style={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            alignContent: "center",
+                                            justifyContent: "left",
+                                            // flexDirection:"column",
+                                            gap: 15,
+                                        }}>
+                                            <img
+                                                src={row.image}
+                                                alt={row.name}
+                                                height="50px"
+                                                // width="50px"
+                                                style={{ marginBottom: 10 }}
                                             />
-                                            <Card.Body>
-                                                <Card.Title style={{ color: "black" }}>{row.rocket_name}</Card.Title>
-                                                <Card.Title style={{ color: "black" }}>{row.country}</Card.Title>
-                                                {/* >>>>>>> a4efbf34a28c6f08c97e8517fffaf82f92b1a772 */}
+                                            <div style={{ display: "flex", flexDirection: "column" }}
+                                            >
+                                                <span
+                                                    style={{
+                                                        textTransform: "uppercase",
+                                                        fontSize: "20"
+                                                    }}
+                                                > {row.symbol}
+                                                </span>
+                                                <span
+                                                    style={{ color: "darkgrey" }}>{row.name}
+                                                </span>
 
-                                                <Card.Title style={{ color: "black" }}>
-                                                    Flight={" "} {row.first_flight}
-                                                </Card.Title>
-                                                <Card.Text style={{ color: "black" }}>
-                                                    {row.description.length <= 90
-                                                        ? row.description
-                                                        : `${row.description.slice(0, 90)}...`}
-                                                </Card.Text>
+                                            </div>
+                                        </td>
+                                        <td align='center'>
+                                            {symbol}{" "}
+                                            {numberWithCommas(row.current_price.toFixed(2))}
+                                        </td>
+                                        <td
+                                            align='center'
+                                            style={{
+                                                color: profit > 0 ? "rgb(14,203,129)" : "red",
+                                                fontWeight: 500,
+                                            }}>
+                                            {profit && "+"}
+                                            {row.price_change_percentage_24h.toFixed(2)}%
+
+                                        </td>
+                                        <td align='center'>
+                                            {symbol}{" "}
+                                            {numberWithCommas(
+                                                row.market_cap.toString().slice(0, -6)
+                                            )}
+                                            M
+                                        </td>
+
+                                    </tr>)
+
+                            })}
 
 
-                                                <a
-                                                    href={row.wikipedia}
-                                                    className="btn btn-dark btn-sm"
-                                                    style={{ margin: "0 5px" }}
-                                                >
-                                                    View details
-                                                </a>
-                                                {/* <Link
-              to={`/photos/${photo.id}`}
-              className="btn btn-dark btn-sm"
-              style={{ margin: "0 5px" }}
-            >
-              View enlarged
-            </Link> */}
-                                            </Card.Body>
-                                        </Card>
-                                    </Col>
-                                ))
-                            ) : (
-                                <Spinner
-                                    animation="border"
-                                    role="status"
-                                    style={{ margin: "200px auto" }}
-                                >
-                                    <span className="visually-hidden">Loading...</span>
-                                </Spinner>
-                            )}
-                        </Row>
+
+
+
+                        </tbody>
+
+
                     </Table>
 
-                )
-                }
-            </Container>
-        
-    );
-            }
+                )}
+      
 
-    export default Cointable
+            </Container>
+        </>
+    )
+}
+
+export default Cointable
 
 
