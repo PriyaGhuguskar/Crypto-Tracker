@@ -18,7 +18,7 @@ const Cointable = () => {
 
     const fetchCoins = async () => {
         setLoading(true)
-        const { data } = await axios.get(CoinList(currency));
+        const { data } = await axios.get(CoinList());
         setCoins(data);
         setLoading(false)
     };
@@ -60,7 +60,7 @@ const Cointable = () => {
                     <Table>
                         <thead>
                             <tr className='Table-head-row'>
-                                {["Coin", "Price", "24h Change", "Market Cap"].map((head) => (
+                                {["Coin Name", "Price", "24h Change", "Market Cap"].map((head) => (
                                     <th key={head}
                                     >{head}</th>
                                 ))}
