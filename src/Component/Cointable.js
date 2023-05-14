@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { CoinList } from '../Config/Api';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-// import { CryptoState } from '../Context/CryptoContext';
+import { CryptoState } from '../Context/CryptoContext';
 import { Container, Form, Table, Spinner} from 'react-bootstrap';
 import { numberWithCommas } from './Banner/Slider';
 // import CryptoRow from './CoinRow';
-
 
 const Cointable = () => {
     const [coins, setCoins] = useState([]);
@@ -15,14 +14,11 @@ const Cointable = () => {
     // const [page, setPage] = useState(1)
     const history = useHistory()
 
-    // const { currency, symbol } = CryptoState()
+    const { currency, symbol } = CryptoState()
 
     const fetchCoins = async () => {
         setLoading(true)
-        const { data } = await axios.get(CoinList());
-// =======
-        // const { data } = await axios.get(AllList());
-//a4efbf34a28c6f08c97e8517fffaf82f92b1a772
+        const { data } = await axios.get(CoinList(currency));
         setCoins(data);
         setLoading(false)
     };
@@ -31,7 +27,7 @@ const Cointable = () => {
        
         fetchCoins()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [currency])
 
     const handlesearch = () => {
        
@@ -64,7 +60,7 @@ const Cointable = () => {
                     <Table>
                         <thead>
                             <tr className='Table-head-row'>
-                                {["Coin Name", "Price", "24h Change", "Market Cap"].map((head) => (
+                                {["Coin", "Price", "24h Change", "Market Cap"].map((head) => (
                                     <th key={head}
                                     >{head}</th>
                                 ))}
@@ -110,7 +106,7 @@ const Cointable = () => {
                                             </div>
                                         </td>
                                         <td align='center'>
-                                            {/* {symbol}{" "} */}
+                                            {symbol}{" "}
                                             {numberWithCommas(row.current_price.toFixed(2))}
                                         </td>
                                         <td
@@ -124,8 +120,7 @@ const Cointable = () => {
 
                                         </td>
                                         <td align='center'>
-                                            {/* {symbol} */}
-                                            {" "}
+                                            {symbol}{" "}
                                             {numberWithCommas(
                                                 row.market_cap.toString().slice(0, -6)
                                             )}
