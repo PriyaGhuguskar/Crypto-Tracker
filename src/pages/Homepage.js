@@ -6,7 +6,7 @@ const Homepage = () => {
   return (
     <>
     <Banner />
-    {/* <Cointable /> */}
+    <Cointable />
     </>
   )
 }

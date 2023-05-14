@@ -2,7 +2,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './Component/Header';
-import CoinPage from './pages/CoinPage';
+// import CoinPage from './pages/CoinPage';
 import Homepage from './pages/Homepage';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         <div>
           <Header />
           <Route exact path="/" component={Homepage}></Route>
-          <Route path="/coins/:id" component={CoinPage}></Route>
+          {/* <Route path="/coins/:id" component={CoinPage}></Route> */}
 
         </div>
 
