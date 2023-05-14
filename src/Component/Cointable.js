@@ -7,6 +7,7 @@ import { Container, Form, Table, Spinner} from 'react-bootstrap';
 import { numberWithCommas } from './Banner/Slider';
 // import CryptoRow from './CoinRow';
 
+
 const Cointable = () => {
     const [coins, setCoins] = useState([]);
     const [loading, setLoading] = useState(false);
