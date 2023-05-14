@@ -8,10 +8,9 @@ const Banner = () => {
         <Container className='banner-cont'>
             <div className='banner-heading'>
             <h2 className='banner-text '>
-            The Universe is a pretty big place to explore
-            </h2>
+            Crypto Hunter            </h2>
             <div className='banner-small'>
-              Get all the Info Regarding Our Mission
+            Get all the Info regarding your favorite Crypto Currency
             </div>
             </div>
             <Slider />

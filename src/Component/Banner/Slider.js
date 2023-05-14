@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { ComingList } from '../../Config/Api'
+import { TrendingCoins } from '../../Config/Api'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import AliceCarousel from 'react-alice-carousel'
+import {CryptoState} from '../../Context/CryptoContext'
 
 export function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -11,46 +12,50 @@ export function numberWithCommas(x) {
 
 const Slider = () => {
     const [trending, setTrending] = useState([]);
-
-    const fetchComingCapsule = async () => {
-        const { data } = await axios.get(ComingList());
+    const { currency, symbol } = CryptoState();
+    const fetchTrendingCoins = async () => {
+        const { data } = await axios.get(TrendingCoins(currency));
+    
+        console.log(data);
         setTrending(data);
-    };
+      };
 
     // console.log(trending);
     useEffect(() => {
-        fetchComingCapsule();
+        fetchTrendingCoins();
           // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, []);
+        }, [currency]);
 
-
-
-    const items = trending.map((coin) => {
-        // let profit = coin.price_change_percentage_24h >= 0;
+        const items = trending.map((coin) => {
+            let profit = coin?.price_change_percentage_24h >= 0;
+        
         return (
             <Link className='slider-link' to={`/coins/${coin.id}`}>
                 <img
-                    src={coin?.flickr_images[0]}
-                    alt=  {coin?.rocket_name}
-                    height="80"
-                    style={{ marginBottom: 10 }}
-                />
-                
-                 <div>
-                    {coin?.rocket_name}
-                    </div>
-                    <div>
-                    {coin?.country}
-                    
-                </div>
-
-                <div style={{ fontSize: 22, fontWeight: 500 }}>
-          {coin?.missions?.name}
-        </div> 
-            </Link>
-        )
-    })
-
+          src={coin?.image}
+          alt={coin.name}
+          height="80"
+          style={{ marginBottom: 10 }}
+        />
+        <span>
+          {coin?.symbol}
+          &nbsp;
+          <span
+            style={{
+              color: profit > 0 ? "rgb(14, 203, 129)" : "red",
+              fontWeight: 500,
+            }}
+          >
+            {profit && "+"}
+            {coin?.price_change_percentage_24h?.toFixed(2)}%
+          </span>
+        </span>
+        <span style={{ fontSize: 22, fontWeight: 500 }}>
+          {symbol} {numberWithCommas(coin?.current_price.toFixed(2))}
+        </span>
+      </Link>
+    );
+  });
     const responsive = {
         0: {
             items: 2,

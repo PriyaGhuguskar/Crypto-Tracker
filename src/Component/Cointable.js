@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { CoinList } from '../Config/Api';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import { CryptoState } from '../Context/CryptoContext';
+// import { CryptoState } from '../Context/CryptoContext';
 import { Container, Form, Table, Spinner} from 'react-bootstrap';
 import { numberWithCommas } from './Banner/Slider';
 // import CryptoRow from './CoinRow';
@@ -15,7 +15,7 @@ const Cointable = () => {
     // const [page, setPage] = useState(1)
     const history = useHistory()
 
-    const { currency, symbol } = CryptoState()
+    // const { currency, symbol } = CryptoState()
 
     const fetchCoins = async () => {
         setLoading(true)
@@ -31,7 +31,7 @@ const Cointable = () => {
        
         fetchCoins()
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currency])
+    }, [])
 
     const handlesearch = () => {
        
@@ -110,7 +110,7 @@ const Cointable = () => {
                                             </div>
                                         </td>
                                         <td align='center'>
-                                            {symbol}{" "}
+                                            {/* {symbol}{" "} */}
                                             {numberWithCommas(row.current_price.toFixed(2))}
                                         </td>
                                         <td
@@ -124,7 +124,8 @@ const Cointable = () => {
 
                                         </td>
                                         <td align='center'>
-                                            {symbol}{" "}
+                                            {/* {symbol} */}
+                                            {" "}
                                             {numberWithCommas(
                                                 row.market_cap.toString().slice(0, -6)
                                             )}
